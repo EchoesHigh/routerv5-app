@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import CharacterScreen from "../pages/CharacterScreen";
 import ManScreen from "../pages/ManScreen";
 import SearchScreen from "../pages/SearchScreen";
 import WomanScreen from "../pages/WomanScreen";
@@ -13,7 +14,8 @@ const AppRouter = () => {
         <Route exact path="/men" component={ManScreen} />
         <Route exact path="/women" component={WomanScreen} />
         <Route exact path="/search" component={SearchScreen} />
-        {/* <Redirect to="/men" /> */}
+        <Route exact path="/character/:id" component={CharacterScreen} />
+        <Redirect to="/men" />
       </Switch>
     </>
   );

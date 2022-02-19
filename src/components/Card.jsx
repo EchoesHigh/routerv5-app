@@ -10,7 +10,7 @@ const Card = ({ id, name, description, type }) => {
       <div className="card-body">
         <h3 className="card-title">{name}</h3>
         <p className="card-text">
-          <Link className="card-link" to={""}>
+          <Link className="card-link" to={`/character/${id}`}>
             Info...
           </Link>
         </p>

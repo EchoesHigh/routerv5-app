@@ -1,9 +1,19 @@
 import React from "react";
+import Card from "../components/Card";
+import { Characters } from "../models/Characters";
 
 const WomanScreen = () => {
+  const women = Characters.filter((character) => character.type === "m");
+
   return (
-    <div>
-      <h1>Women</h1>
+    <div className="container mt-3">
+      <h1>Women Screen</h1>
+      <hr />
+      <div className="row justify-content-center">
+        {women.map((woman) => (
+          <Card key={woman.id} {...woman} />
+        ))}
+      </div>
     </div>
   );
 };
