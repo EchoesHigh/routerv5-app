@@ -3,6 +3,7 @@ import { useLocation } from "react-router";
 import queryString from "query-string";
 import { Characters } from "../models/Characters";
 import Card from "../components/Card";
+import { saveAs } from "file-saver";
 
 const SearchScreen = ({ history }) => {
   const location = useLocation();
@@ -38,6 +39,13 @@ const SearchScreen = ({ history }) => {
   useEffect(() => {
     getCharacters();
   }, [q]);
+
+  const handleDownload = () => {
+    saveAs(
+      "https://static.wikia.nocookie.net/dragonball/images/4/4d/Zoonama.Ep.7.GT.png/revision/latest/smart/width/200/height/200?cb=20110902193027",
+      "Zoonama.png"
+    );
+  };
 
   return (
     <div className="container mt-5">
@@ -75,8 +83,15 @@ const SearchScreen = ({ history }) => {
           ))}
         </div>
       </div>
+      <button type="button" onClick={handleDownload}>
+        Download
+      </button>
     </div>
   );
 };
 
 export default SearchScreen;
+
+// https://dragonball.fandom.com/api/v1/Articles/List?category=Characters&limit=1511
+
+// https://dragonball.fandom.com/api/v1/Articles/Details?ids=9124&abstract=200&width=200&height=200

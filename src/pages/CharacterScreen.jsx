@@ -9,7 +9,7 @@ const CharacterScreen = ({ history }) => {
     (character) => character.id === id
   );
 
-  const path = `/assets/${type}-${id}.png`;
+  const path = `/assets/${type}-${id}.webp`;
 
   const handleBack = () => {
     history.goBack();
