@@ -3,7 +3,9 @@ import { useLocation } from "react-router";
 import queryString from "query-string";
 import { Characters } from "../models/Characters";
 import Card from "../components/Card";
-import { saveAs } from "file-saver";
+import { DBCharacters } from "../models/DBCharacters";
+import { Minor } from "../models/Minor";
+import { Tertiary } from "../models/Tertiary";
 
 const SearchScreen = ({ history }) => {
   const location = useLocation();
@@ -40,11 +42,30 @@ const SearchScreen = ({ history }) => {
     getCharacters();
   }, [q]);
 
+  // const fandom = "https://dragonball.fandom.com/wiki/";
+
   const handleDownload = () => {
-    saveAs(
-      "https://static.wikia.nocookie.net/dragonball/images/4/4d/Zoonama.Ep.7.GT.png/revision/latest/smart/width/200/height/200?cb=20110902193027",
-      "Zoonama.png"
-    );
+    console.log("Whole object:");
+    console.log(DBCharacters);
+    const finalChar = DBCharacters.map(({ id, title }) => {
+      if (
+        Minor.some((minor) => minor.title === title) ||
+        Tertiary.some((tertiary) => tertiary.title === title)
+      ) {
+        return 0;
+      }
+      return { id: id, title: title };
+    });
+    console.log("With 0's: ");
+    console.log(finalChar);
+    const a = finalChar.filter((final) => final !== 0);
+    console.log("Filter final: ");
+    console.log(a);
+    // const final = filterTertiary.map(
+    //   (x) => `{ url: "${fandom + x.split(" ").join("_")}" }`
+    // );
+    // console.log("Final map: ");
+    // console.log(final);
   };
 
   return (
